@@ -41,12 +41,10 @@ interface Future {
   hourly: HourWeather[]
 }
 const processWeatherData = (data: WeatherData) => {
-  console.log(data)
   return data
 }
 
 const processAirData = (data: AirData) => {
-  console.log(data)
   return data.indexes[0]
 }
 
@@ -60,7 +58,6 @@ export const useStore = defineStore('store', () => {
       const result = await getWeatherData(coords)
       weatherDetail.value = processWeatherData(result?.weather)
       airQuality.value = processAirData(result?.air)
-      console.log(result?.future)
       future.value = result?.future
     } catch { }
   }

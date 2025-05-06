@@ -83,7 +83,7 @@ onMounted(() => {
         longitude: JSON.parse(localStorage.getItem('position')!).longitude
       })
     }
-  }, 5000)
+  }, 10000)
 })
 
 </script>
