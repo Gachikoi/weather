@@ -75,15 +75,15 @@ onMounted(() => {
       longitude: JSON.parse(localStorage.getItem('position')!).longitude
     })
   }
-  // setInterval(() => {
-  //   updateTime.value = new Date().toLocaleString();
-  //   if (localStorage.getItem('position')) {
-  //     store.getData({
-  //       latitude: JSON.parse(localStorage.getItem('position')!).latitude,
-  //       longitude: JSON.parse(localStorage.getItem('position')!).longitude
-  //     })
-  //   }
-  // }, 10000)
+  setInterval(() => {
+    updateTime.value = new Date().toLocaleString();
+    if (localStorage.getItem('position')) {
+      store.getData({
+        latitude: JSON.parse(localStorage.getItem('position')!).latitude,
+        longitude: JSON.parse(localStorage.getItem('position')!).longitude
+      })
+    }
+  }, 5000)
 })
 
 </script>
