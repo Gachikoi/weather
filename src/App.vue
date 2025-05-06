@@ -1,18 +1,20 @@
 <template>
-  <div class="app" v-if="store.weatherDetail && store.airQuality">
-    <div class="weather" @click="openDrawer">
-      <t-statistic title="天气详情" :value="store.weatherDetail.now.temp" unit="度" />
-    </div>
-    <t-drawer size="100%" v-model:visible="detailVisible" :cancelBtn="null" placement="bottom"
-      :onConfirm="() => detailVisible = false">
-      <div class="echart" id="echart1"></div>
-      <div class="echart" id="echart2"></div>
-    </t-drawer>
-    <div class="air-quality">
-      <t-statistic title="空气质量指数" :value="store.airQuality.aqi" unit="AQI" />
-    </div>
-    <div class="update-time">
-      <t-typography-text theme="secondary">更新时间：{{ updateTime }}</t-typography-text>
+  <div class="app">
+    <div v-if="store.weatherDetail && store.airQuality" class="wrapper">
+      <div class="weather" @click="openDrawer">
+        <t-statistic title="天气详情" :value="store.weatherDetail.now.temp" unit="度" />
+      </div>
+      <t-drawer size="100%" v-model:visible="detailVisible" :cancelBtn="null" placement="bottom"
+        :onConfirm="() => detailVisible = false">
+        <div class="echart" id="echart1"></div>
+        <div class="echart" id="echart2"></div>
+      </t-drawer>
+      <div class="air-quality">
+        <t-statistic title="空气质量指数" :value="store.airQuality.aqi" unit="AQI" />
+      </div>
+      <div class="update-time">
+        <t-typography-text theme="secondary">更新时间：{{ updateTime }}</t-typography-text>
+      </div>
     </div>
     <Position class="position" />
   </div>
@@ -46,7 +48,7 @@ const openDrawer = async () => {
     },
     series: [{
       data: store.future?.hourly.map((item: HourWeather) => item.temp),
-      type:'line'
+      type: 'line'
     }]
   })
   const myChart2 = echarts.init(document.getElementById('echart2')!)
@@ -63,7 +65,7 @@ const openDrawer = async () => {
     },
     series: [{
       data: store.future?.hourly.map((item: HourWeather) => item.humidity),
-      type:'line'
+      type: 'line'
     }]
   })
 }
@@ -97,6 +99,13 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
   background-image: url('./assets/background.jpeg');
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20vw;
+  }
 
   .weather {
     display: flex;
